@@ -6,7 +6,10 @@
 
 <style>
 .footer {
-  margin-top: 100px;
+  position: fixed;
+  bottom: 24px;
+  left: 0;
+  right: 0;
 }
 .copyright {
   font-family: Helvetica;

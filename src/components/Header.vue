@@ -7,8 +7,14 @@
 <style>
 .logo img {
   width: 280px;
-  position: absolute;
-  top: 20px;
-  left: 20px;
+  position: fixed;
+  top: 24px;
+  left: 24px;
+}
+
+@media screen and (min-width: 1024px){
+  .logo img {
+    left: calc(50% - 488px);
+  }
 }
 </style>
