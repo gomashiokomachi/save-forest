@@ -1,6 +1,8 @@
 <template>
   <Header/>
-  <router-view/>
+  <main class="main">
+    <router-view/>
+  </main>
   <Footer/>
 </template>
 
@@ -68,7 +70,5 @@ body {
 #app {
   overflow: hidden;
   position: relative;
-  max-width: 1024px;
-  margin: 0 auto;
 }
 </style>
