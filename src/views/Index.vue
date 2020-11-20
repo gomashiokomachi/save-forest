@@ -1,40 +1,31 @@
 <template>
   <figure class="mainImg"><img src="../assets/mainImg.png" alt="main image"></figure>
-  <div class="textContainer">
-    <div class="textOuter">
-      <div class="textInner"
+  <div class="container">
+    <div class="outer">
+      <TextArea 
         v-for="(item) in items" :key="item.text"
-        v-parallax-fit="[
-          {
-            start: item.start,
-            end: item.start + 50,
-            fromStyle: {
-              opacity: 0
-            },
-            toStyle: {
-              opacity: 1,
-            },
-          },
-          {
-            start: item.end - 50,
-            end: item.end,
-            fromStyle: {
-              opacity: 1
-            },
-            toStyle: {
-              opacity: 0,
-            },
-          }
-        ]"
-      >
-        <p class="text">{{ item.text }}</p>
-      </div>
+        :start="item.start"
+        :end="item.end"
+        :text="item.text"
+      />
+      <Item :start="2800" :end="3200">
+        <Activity />
+      </Item>
     </div>
   </div>
 </template>
 
 <script>
+import TextArea from  '../components/TextArea.vue' 
+import Item from  '../components/Item.vue' 
+import Activity from  '../components/Activity.vue' 
+
 export default {
+  components: {
+    TextArea,
+    Item,
+    Activity
+  },
   setup() {
     return {
       items:  [
@@ -80,28 +71,6 @@ export default {
 </script>
 
 <style lang="scss">
-.textContainer {
-  height: 4000px;
-}
-.textOuter {
-  height: 100%;
-  width: 100%;
-  position: fixed;
-}
-.textInner {
-  position: absolute;
-  top: 480px;
-  right: 600px;
-  @media screen and (min-width: 1024px){
-    right: calc(50% + 88px);
-  }
-}
-.text {
-  width: 250px;
-  font-family: '手札体-简';
-  text-align: justify;
-  line-height: 1.6em;
-}
 .mainImg img {
   position: fixed;
   top: 48px;
@@ -110,5 +79,13 @@ export default {
   @media screen and (min-width: 1024px){
     right: calc(50% - 464px);
   }
+}
+.container {
+  height: 4000px;
+}
+.outer {
+  height: 100%;
+  width: 100%;
+  position: fixed;
 }
 </style>
