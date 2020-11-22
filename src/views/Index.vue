@@ -1,5 +1,6 @@
 <template>
   <figure class="mainImg"><img src="../assets/mainImg.png" alt="main image"></figure>
+  <Earth />
   <div class="container">
     <div class="outer">
       <TextArea 
@@ -16,12 +17,14 @@
 </template>
 
 <script>
+import Earth from  '../components/Earth.vue'
 import TextArea from  '../components/TextArea.vue' 
 import Item from  '../components/Item.vue' 
 import Activity from  '../components/Activity.vue' 
 
 export default {
   components: {
+    Earth,
     TextArea,
     Item,
     Activity
