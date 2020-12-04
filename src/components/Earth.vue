@@ -3,16 +3,18 @@
 </template>
 
 <style lang="scss">
-.earthImg img {
+.earthImg {
   position: fixed;
   top: 480px;
   right: 432px;
-  width: 48px;
   animation-name: earth;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-duration: 1.6s;
+  & img {
+    width: 48px;
+  }
   @media screen and (min-width: 1024px){
     right: calc(50% - 80px);
   }

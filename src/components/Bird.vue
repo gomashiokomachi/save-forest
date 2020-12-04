@@ -64,8 +64,8 @@ export default {
 <style lang="scss">
 .birdImg {
   position: fixed;
-}
-.birdImg img {
-  width: 48px;
+  & img {
+    width: 48px;
+  }
 }
 </style>

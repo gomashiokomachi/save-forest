@@ -10,11 +10,11 @@
   top: 24px;
   left: 24px;
   z-index: 10;
+  & img {
+    width: 280px;
+  }
   @media screen and (min-width: 1024px){
     left: calc(50% - 488px);
   }
-}
-.logo img {
-  width: 280px;
 }
 </style>
