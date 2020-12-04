@@ -5,13 +5,16 @@
 </template>
 
 <style lang="scss">
-.logo img {
-  width: 280px;
+.logo {
   position: fixed;
   top: 24px;
   left: 24px;
+  z-index: 10;
   @media screen and (min-width: 1024px){
     left: calc(50% - 488px);
   }
+}
+.logo img {
+  width: 280px;
 }
 </style>
