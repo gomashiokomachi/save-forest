@@ -8,7 +8,7 @@
           opacity: 0
         },
         toStyle: {
-          opacity: 1,
+          opacity: 1
         },
       },
       {
@@ -18,7 +18,7 @@
           opacity: 1
         },
         toStyle: {
-          opacity: 0,
+          opacity: 0
         },
       }
     ]"
@@ -40,7 +40,7 @@ export default {
 .item {
   overflow: hidden;
   background: #f5f5dc8a;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 </style>
