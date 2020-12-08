@@ -9,7 +9,6 @@
   position: fixed;
   top: 24px;
   left: 24px;
-  z-index: 10;
   & img {
     width: 280px;
   }
