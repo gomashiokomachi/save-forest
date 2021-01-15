@@ -1,4 +1,5 @@
 <template>
+  <Weather />
   <figure class="mainImg"><img src="../assets/mainImg.png" alt="main image"></figure>
   <Earth />
   <Bird />
@@ -18,6 +19,7 @@
 </template>
 
 <script>
+import Weather from  '../components/Weather.vue'
 import Earth from  '../components/Earth.vue'
 import Bird from  '../components/Bird.vue'
 import TextArea from  '../components/TextArea.vue' 
@@ -26,6 +28,7 @@ import Activity from  '../components/Activity.vue'
 
 export default {
   components: {
+    Weather,
     Earth,
     Bird,
     TextArea,
