@@ -14,6 +14,14 @@
       <Item :start="2800" :end="3200">
         <Activity />
       </Item>
+      <div
+        v-parallax-timing
+        eventScrollPosition="last" 
+        :toggle="timingEvent"
+      >
+        <Flowers />
+        <figure class="endlogo"><img src="../assets/endlogo.png" alt="Save Forest"></figure>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +32,8 @@ import Earth from  '../components/Earth.vue'
 import Bird from  '../components/Bird.vue'
 import TextArea from  '../components/TextArea.vue' 
 import Item from  '../components/Item.vue' 
-import Activity from  '../components/Activity.vue' 
+import Activity from  '../components/Activity.vue'
+import Flowers from  '../components/Flowers.vue'
 
 export default {
   components: {
@@ -33,10 +42,24 @@ export default {
     Bird,
     TextArea,
     Item,
-    Activity
+    Activity,
+    Flowers
   },
   setup() {
+    const timingEvent = [
+      ({ target }) => {
+        target.classList.add('on')
+        console.log(target,'start')
+        const scrollTo = () => {window.scrollTo(0, 0)}
+        window.setTimeout(scrollTo, 3000)
+      },
+      ({ target }) => {
+        target.classList.remove('on')
+        console.log('end')
+      }
+    ]
     return {
+      timingEvent,
       items:  [
         {
           start: 0,
@@ -107,5 +130,20 @@ export default {
   width: 100%;
   position: fixed;
   z-index: 3;
+}
+.endlogo {
+  & img {
+   width: 800px;
+  }
+  position: absolute;
+  top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+  transition-duration: 0.8s;
+}
+.on .endlogo {
+  transform: translate(-50%, -50%) scale(1) rotate(360deg);
+  transition-duration: 0.8s;
+  transition-delay: 1s;
 }
 </style>
