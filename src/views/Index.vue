@@ -135,15 +135,18 @@ export default {
   & img {
    width: 800px;
   }
+  z-index: 30;
   position: absolute;
   top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%) scale(0);
+	transform: translate(-50%, -50%) scale(0.4);
   transition-duration: 0.8s;
+  opacity: 0;
 }
 .on .endlogo {
   transform: translate(-50%, -50%) scale(1) rotate(360deg);
   transition-duration: 0.8s;
   transition-delay: 1s;
+  opacity: 1;
 }
 </style>

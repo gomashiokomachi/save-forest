@@ -1,21 +1,81 @@
 <template>
-  <figure v-for="i of 3" :key="i" class="flower no01" :style="{transitionDelay: test()}"><img src="../assets/flowerImg01.png" alt="花01"></figure>
-  <figure v-for="i of 4" :key="i" class="flower no02" :style="{transitionDelay: test()}"><img src="../assets/flowerImg02.png" alt="花02"></figure>
-  <figure v-for="i of 4" :key="i" class="flower no03" :style="{transitionDelay: test()}"><img src="../assets/flowerImg03.png" alt="花03"></figure>
-  <figure v-for="i of 4" :key="i" class="flower no04" :style="{transitionDelay: test()}"><img src="../assets/flowerImg04.png" alt="花04"></figure>
-  <figure v-for="i of 5" :key="i" class="flower no05" :style="{transitionDelay: test()}"><img src="../assets/flowerImg05.png" alt="花05"></figure>
-  <figure v-for="i of 5" :key="i" class="flower no06" :style="{transitionDelay: test()}"><img src="../assets/flowerImg06.png" alt="花06"></figure>
-  <figure v-for="i of 5" :key="i" class="flower no07" :style="{transitionDelay: test()}"><img src="../assets/flowerImg07.png" alt="花07"></figure>
-  <figure v-for="i of 7" :key="i" class="flower no08" :style="{transitionDelay: test()}"><img src="../assets/flowerImg08.png" alt="花08"></figure>
-  <figure v-for="i of 7" :key="i" class="flower no09" :style="{transitionDelay: test()}"><img src="../assets/flowerImg09.png" alt="花09"></figure>
+  <figure v-for="i of 3" :key="i" class="flower no01" :style="{transitionDelay: randomDelay()}"><img src="../assets/flowerImg01.png" alt="花01"></figure>
+  <figure v-for="i of 4" :key="i" class="flower no02" :style="{transitionDelay: randomDelay()}"><img src="../assets/flowerImg02.png" alt="花02"></figure>
+  <figure v-for="i of 4" :key="i" class="flower no03" :style="{transitionDelay: randomDelay()}"><img src="../assets/flowerImg03.png" alt="花03"></figure>
+  <figure v-for="i of 4" :key="i" class="flower no04" :style="{transitionDelay: randomDelay()}"><img src="../assets/flowerImg04.png" alt="花04"></figure>
+  <figure v-for="i of 5" :key="i" class="flower no05" :style="{transitionDelay: randomDelay()}"><img src="../assets/flowerImg05.png" alt="花05"></figure>
+  <figure v-for="i of 5" :key="i" class="flower no06" :style="{transitionDelay: randomDelay()}"><img src="../assets/flowerImg06.png" alt="花06"></figure>
+  <figure v-for="i of 5" :key="i" class="flower no07" :style="{transitionDelay: randomDelay()}"><img src="../assets/flowerImg07.png" alt="花07"></figure>
+  <figure v-for="i of 7" :key="i" class="flower no08" :style="{transitionDelay: randomDelay()}"><img src="../assets/flowerImg08.png" alt="花08"></figure>
+  <figure v-for="i of 7" :key="i" class="flower no09" :style="{transitionDelay: randomDelay()}"><img src="../assets/flowerImg09.png" alt="花09"></figure>
+
+  <figure v-for="i in randomImageNumbers" :key="i" class="flower randomFlower" :style="{transitionDelay: randomDelay(), ...randomPosition()}"><img :src="getImage(i).path" :width="getImage(i).width"></figure>
 </template>
 
 <script>
 export default {
   setup() {
-    const test = () => `${(Math.floor(Math.random() * 4) + 1) * 0.1}s`
+    const width = window.innerWidth
+    const height = window.innerHeight
+    const randomImageNumbers = [...Array(50)].map(() =>  Math.floor(Math.random() * 9))
+
+    const images = [
+      {
+        path: require('@/assets/flowerImg01.png'),
+        width: 440
+      },
+      {
+        path: require('@/assets/flowerImg02.png'),
+        width: 360
+      },
+      {
+        path: require('@/assets/flowerImg03.png'),
+        width: 280
+      },
+      {
+        path: require('@/assets/flowerImg04.png'),
+        width: 280
+      },
+      {
+        path: require('@/assets/flowerImg05.png'),
+        width: 240
+      },
+      {
+        path: require('@/assets/flowerImg06.png'),
+        width: 160
+      },
+      {
+        path: require('@/assets/flowerImg07.png'),
+        width: 160
+      },
+      {
+        path: require('@/assets/flowerImg08.png'),
+        width: 120
+      },
+      {
+        path: require('@/assets/flowerImg09.png'),
+        width: 120
+      },
+    ]
+
+    const randomDelay = () => `${(Math.floor(Math.random() * 4) + 1) * 0.1}s`
+
+    const randomPosition = () => {
+      return {
+        left: `${Math.floor(Math.random() * width) - (Math.random() * 200) + (Math.random() * 100)}px`,
+        top:  `${Math.floor(Math.random() * height) - (Math.random() * 200) + (Math.random() * 100)}px`
+      }
+    }
+
+    const getImage = (i) => {
+      return images[i]
+    }
+
     return {
-      test
+      randomDelay,
+      randomPosition,
+      getImage,
+      randomImageNumbers
     }
   }
 }
@@ -23,9 +83,11 @@ export default {
 
 <style lang="scss">
 .flower {
+  z-index: 20;
   position: absolute;
   transition-duration: 0.4s;
-  transform: scale(0);
+  transform: scale(0.4);
+  opacity: 0;
   &.no01 {
     & img {width: 440px;}
     &:nth-of-type(1) {top: -80px;right: calc(50% - 600px);}
@@ -101,5 +163,10 @@ export default {
 .on .flower {
   transition-duration: 0.4s;
   transform: scale(1);
+  opacity: 1;
+}
+.randomFlower {
+  z-index: 10;
+  position: fixed;
 }
 </style>
