@@ -19,7 +19,7 @@
         eventScrollPosition="last" 
         :toggle="timingEvent"
       >
-        <Flowers />
+        <Flowers v-if="state.isFinish" />
         <figure class="endlogo"><img src="../assets/endlogo.png" alt="Save Forest"></figure>
       </div>
     </div>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { reactive } from 'vue'
 import Weather from  '../components/Weather.vue'
 import Earth from  '../components/Earth.vue'
 import Bird from  '../components/Bird.vue'
@@ -46,12 +47,18 @@ export default {
     Flowers
   },
   setup() {
+    const state = reactive({
+      isFinish: false
+    })
     const timingEvent = [
       ({ target }) => {
         target.classList.add('on')
-        console.log(target,'start')
-        const scrollTo = () => {window.scrollTo(0, 0)}
-        window.setTimeout(scrollTo, 3000)
+        state.isFinish = true
+        const scrollTo = () => {
+          state.isFinish = false
+          window.scrollTo(0, 0)
+        }
+        window.setTimeout(scrollTo, 3200)
       },
       ({ target }) => {
         target.classList.remove('on')
@@ -59,6 +66,7 @@ export default {
       }
     ]
     return {
+      state,
       timingEvent,
       items:  [
         {
