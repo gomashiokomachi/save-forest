@@ -62,8 +62,6 @@ export default {
           })
         }, 2600)
 
-        console.log(p5._lastFrameTime)
-
         for (var i = 0; i < count; i++) {
           dots[i] = new AnimationObject(p5, images, p5._lastFrameTime + Math.random() * 5000);
         }
