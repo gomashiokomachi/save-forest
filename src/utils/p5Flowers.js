@@ -1,5 +1,5 @@
 export default class AnimationObject {
-  constructor(p5, images, delay, isShow = true) {
+  constructor(p5, images, delay, isShow = false) {
     const {
       img
     } = images[p5.floor(p5.random(0, images.length))]

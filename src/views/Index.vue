@@ -19,7 +19,7 @@
         eventScrollPosition="last" 
         :toggle="timingEvent"
       >
-        <Flowers v-if="state.isFinish" />
+        <Flowers :isFinish="state.isFinish" />
         <figure class="endlogo"><img src="../assets/endlogo.png" alt="Save Forest"></figure>
       </div>
     </div>

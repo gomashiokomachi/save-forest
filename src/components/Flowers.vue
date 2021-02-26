@@ -5,12 +5,16 @@
 </template>
 
 <script>
-import { onMounted } from 'vue'
+import { onMounted, onUpdated } from 'vue'
 import p5 from 'p5'
 import AnimationObject from '@/utils/p5Flowers'
 export default {
-  setup() {
+  props: {
+    isFinish: Boolean
+  },
+  setup(props) {
     const dots = [];
+    let time = 0;
     const count = 200;
     const init = (p5) => {
       p5.setup = () => {
@@ -55,19 +59,13 @@ export default {
           }
         ]
 
-        setTimeout(() => {
-          dots.forEach((v) => {
-            v.isShow = false
-            v.delay = p5._lastFrameTime + Math.random() * 500
-          })
-        }, 2600)
-
         for (var i = 0; i < count; i++) {
-          dots[i] = new AnimationObject(p5, images, p5._lastFrameTime + Math.random() * 5000);
+          dots[i] = new AnimationObject(p5, images, p5._lastFrameTime + Math.random() * 1000);
         }
       }
 
       p5.draw = () => {
+        time = p5._lastFrameTime
         p5.erase();
         p5.rect(0,0,window.innerWidth, window.innerHeight);
         p5.noErase();
@@ -77,6 +75,21 @@ export default {
         }
       }
     }
+    onUpdated(() => {
+      if(props.isFinish) {
+        dots.forEach((v) => {
+          v.sizeScale = 0
+          v.delay = time + Math.random() * 1000;
+          v.isShow = true
+        })
+      } else {
+        dots.forEach((v) => {
+        console.log(time, time + Math.random() * 1000)
+          v.delay = time + Math.random() * 1000
+          v.isShow = false
+        })
+      }
+    })
     onMounted(()=> {
       new p5(init)
     })
